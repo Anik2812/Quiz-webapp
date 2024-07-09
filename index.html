@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Quiz Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Super Quiz Challenge</h1>
+        <div id="category-selection">
+            <h2>Select a Category:</h2>
+            <div class="button-group">
+                <button class="category-btn" data-category="general">General Knowledge</button>
+                <button class="category-btn" data-category="science">Science</button>
+                <button class="category-btn" data-category="history">History</button>
+            </div>
+            <h3>Select Difficulty:</h3>
+            <select id="difficulty-select">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div id="quiz-area" class="hidden">
+            <div id="progress-bar">
+                <div id="progress"></div>
+            </div>
+            <h2 id="question"></h2>
+            <div id="choices"></div>
+            <div id="timer">Time left: <span id="time">30</span> seconds</div>
+            <button id="next-btn" class="hidden">Next Question</button>
+        </div>
+        <div id="result-area" class="hidden">
+            <h2>Quiz Completed!</h2>
+            <p>Your score: <span id="score"></span></p>
+            <div id="celebration" class="hidden">
+                <h3>Congratulations! You're a Quiz Master!</h3>
+                <div class="confetti"></div>
+            </div>
+            <button id="restart-btn">Restart Quiz</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
