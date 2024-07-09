@@ -1,33 +1,51 @@
+:root {
+    --primary-color: #4a4a4a;
+    --secondary-color: #6c5ce7;
+    --background-color: #2d3436;
+    --text-color: #dfe6e9;
+    --correct-color: #00b894;
+    --wrong-color: #d63031;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #333;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 #quiz-container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     text-align: center;
-    max-width: 600px;
+    max-width: 800px;
     width: 90%;
+    backdrop-filter: blur(10px);
 }
 
-h1 {
-    color: #4a4a4a;
+header h1 {
+    color: var(--secondary-color);
     margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 button {
-    background-color: #667eea;
+    background-color: var(--secondary-color);
     border: none;
-    color: white;
+    color: var(--text-color);
     padding: 12px 24px;
     text-align: center;
     text-decoration: none;
@@ -38,12 +56,17 @@ button {
     border-radius: 50px;
     transition: all 0.3s ease;
     font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-    background-color: #764ba2;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hidden {
@@ -54,28 +77,47 @@ button:hover {
     display: block;
     width: 100%;
     margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+#choices button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 #timer {
     margin-top: 20px;
     font-weight: bold;
-    color: #4a4a4a;
+    color: var(--text-color);
+    font-size: 1.2em;
+}
+
+#progress-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 #progress-bar {
-    width: 100%;
+    flex-grow: 1;
     height: 10px;
-    background-color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 5px;
-    margin-bottom: 20px;
     overflow: hidden;
+    margin-right: 10px;
 }
 
 #progress {
     width: 0;
     height: 100%;
-    background-color: #667eea;
+    background-color: var(--secondary-color);
     transition: width 0.5s ease-in-out;
+}
+
+#question-counter {
+    font-size: 0.9em;
+    color: var(--text-color);
 }
 
 #difficulty-select {
@@ -83,7 +125,9 @@ button:hover {
     padding: 10px;
     font-size: 16px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
 }
 
 .button-group {
@@ -92,14 +136,52 @@ button:hover {
     flex-wrap: wrap;
 }
 
+#question-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#score-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+#score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+}
+
+#celebration {
+    margin-top: 20px;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideIn {
-    from { transform: translateX(-20px); opacity: 0; }
+    from { transform: translateX(-50px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 #quiz-area, #result-area {
@@ -110,65 +192,40 @@ button:hover {
     animation: slideIn 0.5s ease-out;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
 .pulse {
     animation: pulse 0.5s infinite;
-    color: #ff4757;
+    color: var(--wrong-color);
 }
 
-#celebration {
-    margin-top: 20px;
+@keyframes confetti-fall {
+    0% { transform: translateY(-100vh) rotate(0deg); }
+    100% { transform: translateY(100vh) rotate(720deg); }
 }
 
 .confetti {
-    width: 15px;
-    height: 15px;
-    background-color: #f0f;
-    position: absolute;
-    left: 50%;
-    animation: confetti 5s ease-in-out -2s infinite;
-    transform-origin: left top;
+    position: fixed;
+    top: -10px;
+    z-index: 9999;
+    animation: confetti-fall 4s linear forwards;
 }
 
-.confetti:nth-child(1) {
-    background-color: #f0f;
-    left: 10%;
-    animation-delay: 0;
+@keyframes celebrate {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
 }
 
-.confetti:nth-child(2) {
-    background-color: #0ff;
-    left: 20%;
-    animation-delay: -5s;
+#celebration {
+    animation: celebrate 1s ease-out;
 }
 
-.confetti:nth-child(3) {
-    background-color: #ff0;
-    left: 30%;
-    animation-delay: -3s;
+@keyframes shine {
+    0% { background-position: -100px; }
+    100% { background-position: 200px; }
 }
 
-.confetti:nth-child(4) {
-    background-color: #f00;
-    left: 40%;
-    animation-delay: -2.5s;
-}
-
-.confetti:nth-child(5) {
-    background-color: #0f0;
-    left: 50%;
-    animation-delay: -4s;
-}
-
-@keyframes confetti {
-    0% { transform: rotateZ(15deg) rotateY(0deg) translate(0,0); }
-    25% { transform: rotateZ(5deg) rotateY(360deg) translate(-5vw,20vh); }
-    50% { transform: rotateZ(15deg) rotateY(720deg) translate(5vw,60vh); }
-    75% { transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw,80vh); }
-    100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); }
+.shine {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background-size: 200px 100%;
+    animation: shine 1s infinite linear;
 }

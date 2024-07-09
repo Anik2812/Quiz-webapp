@@ -3,45 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Super Quiz Challenge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Ultimate Quiz Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="quiz-container">
-        <h1>Super Quiz Challenge</h1>
-        <div id="category-selection">
-            <h2>Select a Category:</h2>
-            <div class="button-group">
-                <button class="category-btn" data-category="general">General Knowledge</button>
-                <button class="category-btn" data-category="science">Science</button>
-                <button class="category-btn" data-category="history">History</button>
+        <header>
+            <h1><i class="fas fa-brain"></i> Ultimate Quiz Challenge</h1>
+        </header>
+        <main>
+            <div id="category-selection">
+                <h2>Select a Category:</h2>
+                <div class="button-group">
+                    <button class="category-btn" data-category="general"><i class="fas fa-globe"></i> General Knowledge</button>
+                    <button class="category-btn" data-category="science"><i class="fas fa-atom"></i> Science</button>
+                    <button class="category-btn" data-category="history"><i class="fas fa-landmark"></i> History</button>
+                </div>
+                <div class="difficulty-container">
+                    <h3>Select Difficulty:</h3>
+                    <select id="difficulty-select">
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
             </div>
-            <h3>Select Difficulty:</h3>
-            <select id="difficulty-select">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-        </div>
-        <div id="quiz-area" class="hidden">
-            <div id="progress-bar">
-                <div id="progress"></div>
+            <div id="quiz-area" class="hidden">
+                <div id="progress-container">
+                    <div id="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                    <span id="question-counter">Question 1/10</span>
+                </div>
+                <div id="question-container">
+                    <h2 id="question"></h2>
+                </div>
+                <div id="choices"></div>
+                <div id="timer"><i class="fas fa-hourglass-half"></i> Time left: <span id="time">30</span>s</div>
+                <button id="next-btn" class="hidden">Next Question <i class="fas fa-arrow-right"></i></button>
             </div>
-            <h2 id="question"></h2>
-            <div id="choices"></div>
-            <div id="timer">Time left: <span id="time">30</span> seconds</div>
-            <button id="next-btn" class="hidden">Next Question</button>
-        </div>
-        <div id="result-area" class="hidden">
-            <h2>Quiz Completed!</h2>
-            <p>Your score: <span id="score"></span></p>
-            <div id="celebration" class="hidden">
-                <h3>Congratulations! You're a Quiz Master!</h3>
-                <div class="confetti"></div>
+            <div id="result-area" class="hidden">
+                <h2>Quiz Completed!</h2>
+                <div id="score-container">
+                    <div id="score-circle">
+                        <span id="score">0%</span>
+                    </div>
+                </div>
+                <div id="celebration" class="hidden">
+                    <h3>Congratulations! You're a Quiz Master!</h3>
+                </div>
+                <button id="restart-btn"><i class="fas fa-redo"></i> Restart Quiz</button>
             </div>
-            <button id="restart-btn">Restart Quiz</button>
-        </div>
+        </main>
     </div>
     <script src="script.js"></script>
 </body>
